@@ -1,13 +1,13 @@
 firstName,lastName,occupationTitle,roomType,colors,budget,difficulty
-James,Smith,banker,home office,red,"$10,000 ",easy
-Robert,Johnson,CEO,living room,blue,"$15,000 ",moderate
-John,Williams,manager,home kitchen,yellow,"$20,000 ",hard
-Michael,Brown,chef,bedroom,orange,"$25,000 ",
-William,Jones,owner,restaurant kitchen,green,"$30,000 ",
-David,Garcia,entrepreneur,work office,purple,"$35,000 ",
-Richard,Miller,intern,break room,pink,"$40,000 ",
-Joseph,Davis,,,gray,"$45,000 ",
-Thomas,Rodriguez,,,white,"$50,000 ",
+James,Smith,banker,home office,red,10000,easy
+Robert,Johnson,CEO,living room,blue,15000,moderate
+John,Williams,manager,home kitchen,yellow,20000,hard
+Michael,Brown,chef,bedroom,orange,25000,
+William,Jones,owner,restaurant kitchen,green,30000,
+David,Garcia,entrepreneur,work office,purple,35000,
+Richard,Miller,intern,break room,pink,40000,
+Joseph,Davis,,,gray,45000,
+Thomas,Rodriguez,,,white,50000,
 Charles,Martinez,,,black,,
 Mary,,,,,,
 Patricia,,,,,,
