@@ -38,7 +38,18 @@ public class App {
         String difficulty = fileContents.get("difficulty").get((int) (Math.random() * fileContents.get("difficulty").size()));
         ArrayList<String> colors = new ArrayList<String>();
         for (int i = 0; i < (int) (Math.random() * 3 + 1); i++) {
-            colors.add(fileContents.get("colors").get((int) (Math.random() * fileContents.get("colors").size())));
+            int indexToAdd = (int) (Math.random() * fileContents.get("colors").size());
+            boolean added = false;
+            do {
+                String colorToAdd = fileContents.get("colors").get(indexToAdd);
+                if(!colors.contains(colorToAdd)) {
+                    colors.add(colorToAdd);
+                    added = true;
+                }
+                else {
+                    indexToAdd = (indexToAdd + 1) % fileContents.get("colors").size();
+                }
+            } while (!added);
         }
 
         // fetch and load room specific csv file
@@ -46,12 +57,34 @@ public class App {
 
         // get items from room specific csv file
         ArrayList<String> furniture = new ArrayList<String>();
-        for (int i = 0; i < (int) (Math.random() * 4 + 2); i++) {
-            furniture.add(roomContents.get("furniture").get((int) (Math.random() * roomContents.get("furniture").size())));
+        for (int i = 0; i < (int) (Math.random() * 3 + 2); i++) {
+            int indexToAdd = (int) (Math.random() * roomContents.get("furniture").size());
+            boolean added = false;
+            do {
+                String furnitureToAdd = roomContents.get("furniture").get(indexToAdd);
+                if(!furniture.contains(furnitureToAdd)) {
+                    furniture.add(furnitureToAdd);
+                    added = true;
+                }
+                else {
+                    indexToAdd = (indexToAdd + 1) % roomContents.get("furniture").size();
+                }
+            } while (!added);
         }
         ArrayList<String> limitations = new ArrayList<String>();
         for (int i = 0; i < (int) (Math.random() * 2 + 1); i++) {
-            limitations.add(roomContents.get("limitations").get((int) (Math.random() * roomContents.get("limitations").size())));
+            int indexToAdd = (int) (Math.random() * roomContents.get("limitations").size());
+            boolean added = false;
+            do {
+                String limitationToAdd = roomContents.get("limitations").get(indexToAdd);
+                if(!limitations.contains(limitationToAdd)) {
+                    limitations.add(limitationToAdd);
+                    added = true;
+                }
+                else {
+                    indexToAdd = (indexToAdd + 1) % roomContents.get("limitations").size();
+                }
+            } while (!added);
         }
 
         System.out.println(firstName);
