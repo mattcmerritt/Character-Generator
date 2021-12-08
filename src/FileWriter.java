@@ -24,6 +24,12 @@ public class FileWriter {
     */
 
     public FileWriter(String filename) {
+        // check that the out directory has been added
+        File outDir = new File("../out/");
+        if (!outDir.isDirectory()) {
+            outDir.mkdir();
+        }
+
         outputFile = new File("../out/" + filename + ".json");
         try {
             writer = new PrintWriter(outputFile);
