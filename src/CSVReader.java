@@ -83,7 +83,7 @@ public class CSVReader {
                 int nextComma = line.indexOf(',');
                 String item = null;
 
-                System.out.println(line);
+                // System.out.println(line);
 
                 if (nextComma >= 0) {
                     item = line.substring(0, nextComma);
