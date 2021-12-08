@@ -4,16 +4,18 @@ import java.util.ArrayList;
 public class App {
     public static void main(String[] args) {
         try {
-            if (args.length != 1) throw new Exception();
+            if (args.length != 2) throw new Exception();
         }
         catch (Exception e) {
-            System.out.println("No input file specified, program will terminate. Please rerun the program with the input file path.");
+            System.out.println("No input file specified, program will terminate. Please rerun the program with the input file path and the output file name.");
             System.out.println();
-            System.out.println("To read the file \"TestInput.csv\", run the command: ");
-            System.out.println("java App TestInput.csv");
+            System.out.println("To read the file \"TestInput.csv\" and save to \"Customer.json\", run the command: ");
+            System.out.println("java App TestInput Customer");
             System.exit(0);
         }
+        System.out.println("--------------------------------------------");
         generateCustomer("customer.json", args);
+        System.out.println("--------------------------------------------");
     }
 
     public static String ListToString(ArrayList<String> list) {
@@ -27,7 +29,7 @@ public class App {
 
     public static void generateCustomer (String outputFilename, String[] args) {
         // load in general csv file
-        HashMap<String, ArrayList<String>> fileContents = CSVReader.ReadToHashMap(args[0]);
+        HashMap<String, ArrayList<String>> fileContents = CSVReader.ReadToHashMap(args[0] + ".csv");
 
         // get items from original csv file
         String firstName = fileContents.get("firstName").get((int) (Math.random() * fileContents.get("firstName").size()));
@@ -87,24 +89,38 @@ public class App {
             } while (!added);
         }
 
-        System.out.println(firstName);
-        System.out.println(lastName);
-        System.out.println(occupationTitle);
-        System.out.println(roomType);
-        System.out.println(budget);
-        System.out.println(difficulty);
+        System.out.print("Your randomly generated customer is ");
+        System.out.print(firstName + " " + lastName + ", ");
+        System.out.print("who is a " + occupationTitle);
+        System.out.println(" requesting that you design a " + roomType + " for them. ");
+        System.out.print("Their budget is $" + budget + ", ");
+        System.out.println("and this job was rated with a difficulty of " + difficulty + ".");
+        System.out.println("In terms of colors, they would like the room to contain: ");
         for (int i = 0; i < colors.size(); i++) {
-            System.out.print(colors.get(i) + " ");
+            System.out.println("\t- " + colors.get(i));
         }
-        System.out.println();
+        System.out.println("They have also requested that you include the following pieces of furniture in your design: ");
         for (int i = 0; i < furniture.size(); i++) {
-            System.out.print(furniture.get(i) + " ");
+            System.out.println("\t- " + furniture.get(i));
         }
-        System.out.println();
+        System.out.println("Finally, the limitations of the job site include: ");
         for (int i = 0; i < limitations.size(); i++) {
-            System.out.print(limitations.get(i) + " ");
+            System.out.println("\t- " + limitations.get(i));
         }
-        System.out.println();
+        
+        // write to json file
+        FileWriter jsonOutput = new FileWriter(args[1]);
+        jsonOutput.writeString("firstName", firstName);
+        jsonOutput.writeString("lastName", lastName);
+        jsonOutput.writeString("occupationTitle", occupationTitle);
+        jsonOutput.writeString("roomType", roomType);
+        jsonOutput.writeString("budget", budget);
+        jsonOutput.writeString("difficulty", difficulty);
+        jsonOutput.writeList("colors", colors);
+        jsonOutput.writeList("furniture", furniture);
+        jsonOutput.writeList("limitations", limitations);
+        jsonOutput.saveFile();
 
+        System.out.println("The raw data for this customer has been saved in \"" + args[1] + ".json\", so feel free to take a look if you need to review these later.");
     }
 }

@@ -18,6 +18,6 @@ where <InputFileName> is the CSV file to read the parameters out of, and <Output
 
 A CSV file is provided already for demonstration purposes, and you can generate a character using that one by running the following command:
 
-```java App generalData character```
+```java App GeneralData character```
 
 This will create a file called `character.json` in the `out` directory.
